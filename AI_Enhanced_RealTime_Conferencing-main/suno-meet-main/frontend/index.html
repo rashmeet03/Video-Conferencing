@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUNO MEET - Video Conference</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">SUNO MEET</div>
+        <div class="status">
+          <span id="connStatus" class="pill pill-warn">disconnected</span>
+          <span id="roomStatus" class="pill">room: -</span>
+        </div>
+      </header>
+
+      <section class="controls">
+        <div class="row">
+          <label class="field">
+            <span>Room</span>
+            <input id="roomInput" placeholder="e.g. demo" autocomplete="off" />
+          </label>
+          <button id="joinBtn" class="btn btn-primary">Join</button>
+          <button id="leaveBtn" class="btn" disabled>Leave</button>
+          <button id="copyLinkBtn" class="btn">Copy link</button>
+        </div>
+        <div class="row">
+          <button id="muteBtn" class="btn" disabled>Mute</button>
+          <button id="camBtn" class="btn" disabled>Camera off</button>
+        </div>
+        <p id="hint" class="hint"></p>
+      </section>
+
+      <div class="main-layout">
+        <div class="videos-container">
+          <div class="video-grid">
+            <div class="videoWrap local">
+              <div class="label">You</div>
+              <video id="localVideo" autoplay playsinline muted></video>
+            </div>
+            <div id="remoteVideos" class="remote-videos-grid"></div>
+          </div>
+        </div>
+
+        <section class="chat">
+          <header class="chatHeader">
+            <div class="chatTitle">Chat</div>
+            <div class="chatSubtitle">Send messages while on call</div>
+          </header>
+          <div id="chatMessages" class="chatMessages"></div>
+          <div class="chatInputRow">
+            <input
+              id="chatInput"
+              class="chatInput"
+              type="text"
+              placeholder="Type a message and press Enter…"
+              autocomplete="off"
+              disabled
+            />
+            <button id="chatSendBtn" class="btn chatSendBtn" disabled>Send</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Socket.IO client (served automatically by your backend) -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
